@@ -40,7 +40,7 @@ export const CONSTANTS = Object.freeze({
     }),
     5: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_5.png', fullBackground: true }),
     // TODO: EDITAR quando os símbolos reais forem preparados.
-    7: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
+    7: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_7.png', fullBackground: true }),
     9: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
     10: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
     11: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
