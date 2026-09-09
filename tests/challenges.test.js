@@ -21,10 +21,21 @@ import {
   MISSION_10_SOUNDS,
   validateMission10Session
 } from '../site/challenges/mission-10.js';
+import {
+  MISSION_09_FLAGS,
+  MISSION_09_COUNTRIES,
+  MISSION_09_GRID,
+  MISSION_09_FINAL_ANSWER,
+  MISSION_09_MAX_ATTEMPTS,
+  getValidMission09Country,
+  identifyMission09Flag,
+  revealCorrectFlag,
+  revealOneSquare
+} from '../site/challenges/mission-09.js';
 
-test('registro implementa somente as missões prontas para esta entrega', () => {
-  assert.deepEqual(MISSIONS.filter((mission) => mission.implemented).map((mission) => mission.id), [1, 3, 5, 7, 10]);
-  assert.equal(MISSIONS.filter((mission) => !mission.implemented).length, 6);
+test('registro implementa as missões prontas para esta entrega', () => {
+  assert.deepEqual(MISSIONS.filter((mission) => mission.implemented).map((mission) => mission.id), [1, 3, 5, 7, 9, 10]);
+  assert.equal(MISSIONS.filter((mission) => !mission.implemented).length, 5);
 });
 
 test('missão 01 aceita a classificação canônica', () => {
@@ -99,4 +110,19 @@ test('missão 10 seleciona a sessão 19:10 e extrai CINEMA', () => {
   assert.equal(result.code, 'CINEMA');
   assert.equal(validateMission10Session('mare', answers).validSession, false);
   assert.equal(validateMission10Session(target.id, answers.slice(0, 5)).valid, false);
+});
+
+test('missão 09 usa três bandeiras em grades de 162 quadrados e sete chutes', () => {
+  assert.equal(MISSION_09_FLAGS.length, 3);
+  assert.equal(MISSION_09_COUNTRIES.length, 195);
+  assert.deepEqual(MISSION_09_GRID, { columns: 18, rows: 9, squares: 162 });
+  assert.equal(MISSION_09_MAX_ATTEMPTS, 7);
+  assert.equal(identifyMission09Flag('grÉcia'), 1);
+  assert.equal(identifyMission09Flag('Croacia'), 2);
+  assert.equal(identifyMission09Flag('Portugal'), -1);
+  assert.equal(getValidMission09Country('brasil'), 'Brasil');
+  assert.equal(getValidMission09Country('País inventado'), null);
+  assert.deepEqual(revealOneSquare([[], [], []], () => 0).map((cells) => cells.length), [1, 1, 1]);
+  assert.equal(revealCorrectFlag([[], [], []], 1, () => 0)[1].length, 162);
+  assert.equal(matchesAnswer('a praia', MISSION_09_FINAL_ANSWER), true);
 });

@@ -945,3 +945,56 @@ legend { padding-inline: 8px; color: var(--accent); font-weight: 800; }
   .choice-list { display: grid; grid-template-columns: 1fr; }
   .choice-list .button { width: 100%; }
 }
+
+/* ================================================================
+   MISSÃO 09 — VALE-PRAIA
+================================================================ */
+.mission-vale-praia { max-width: 1160px; }
+.mission-09-game { display: grid; gap: 22px; }
+.mission-09-actions { display: flex; justify-content: flex-end; }
+.mission-09-brief { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(135deg, #172b36, #101b24); }
+.mission-09-brief h2, .mission-09-brief p { margin: 0; }
+.mission-09-brief p { max-width: 72ch; color: var(--muted); line-height: 1.55; }
+.mission-09-attempts { flex: 0 0 auto; color: var(--accent) !important; font-weight: 850; white-space: nowrap; }
+.mission-09-flags { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.mission-09-flag-card { min-width: 0; margin: 0; padding: 10px; border: 1px solid var(--line); border-radius: 16px; background: #0c151d; }
+.mission-09-flag-card.is-solved { border-color: #4e956f; box-shadow: 0 0 0 1px #4e956f44, 0 12px 28px #0003; }
+.mission-09-flag-frame { position: relative; aspect-ratio: 2 / 1; overflow: hidden; border-radius: 10px; background: transparent; isolation: isolate; }
+.mission-09-flag-frame img { display: block; width: 100%; min-width: 100%; height: 100%; min-height: 100%; object-fit: fill !important; object-position: center; }
+.mission-09-cover-grid { position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); grid-template-rows: repeat(9, minmax(0, 1fr)); gap: 0; padding: 0; }
+/* O SVG da Croácia deixa um subpixel exposto na borda direita em alguns widths. */
+.mission-09-flag-card[data-flag-card="2"] .mission-09-cover-grid { right: -1px; }
+.mission-09-cover-cell { min-width: 0; min-height: 0; border: 0; background: linear-gradient(145deg, #243541, #111c25); box-shadow: inset 0 0 0 1px #81909a55; transition: opacity .2s ease; }
+.mission-09-cover-cell.is-open { visibility: hidden; }
+.mission-09-flag-card figcaption { display: grid; gap: 3px; padding: 10px 2px 2px; }
+.mission-09-flag-label { color: var(--accent); font-size: .72rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.mission-09-flag-card figcaption strong { color: var(--ink); font-size: 1.05rem; }
+.mission-09-flag-card figcaption span:last-child { color: var(--muted); font-size: .86rem; }
+.mission-09-message { min-height: 1.5em; margin: 0; color: var(--muted); font-weight: 700; }
+.mission-09-message[data-type="error"] { color: var(--danger); }
+.mission-09-message[data-type="success"] { color: var(--success); }
+.mission-09-guess-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.mission-09-guess-slot { display: grid; place-items: center; min-height: 48px; padding: 8px; overflow: hidden; border: 1px dashed #405463; border-radius: 10px; color: var(--muted); background: #0c151d; font-size: .86rem; font-weight: 750; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.mission-09-guess-slot.is-filled { border-style: solid; border-color: #866536; color: var(--ink); background: #211b14; }
+.mission-09-answer-form { display: grid; gap: 9px; }
+.mission-09-answer-form label { color: var(--ink); font-weight: 800; }
+.mission-09-input-row { display: flex; gap: 10px; }
+.mission-09-input-row .button { flex: 0 0 auto; }
+.mission-09-answer-form small { color: var(--muted); }
+.mission-09-riddle, .mission-09-bonus { display: grid; gap: 10px; padding: 20px; border: 1px dashed var(--accent); border-radius: 16px; background: #2a2115; }
+.mission-09-riddle[hidden], .mission-09-bonus[hidden] { display: none; }
+.mission-09-riddle > *, .mission-09-bonus > * { margin: 0; }
+.mission-09-riddle p:not(.eyebrow), .mission-09-bonus p { color: #f4d5ae; line-height: 1.6; }
+.mission-09-riddle .mission-09-answer-form { margin-top: 4px; }
+
+@media (max-width: 760px) {
+  .mission-09-flags { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .mission-09-brief { align-items: stretch; flex-direction: column; }
+  .mission-09-input-row { align-items: stretch; flex-direction: column; }
+  .mission-09-input-row .button { width: 100%; }
+  .mission-09-guess-grid { gap: 6px; }
+  .mission-09-guess-slot { min-height: 44px; padding: 6px 3px; font-size: .72rem; }
+}

@@ -1,6 +1,6 @@
 import { createAttemptController } from '../core/attempts.js';
 
-export function createMissionShell({ mission, onBack, onComplete, onContact, store }) {
+export function createMissionShell({ mission, onBack, onComplete, onContact, store, persistAttempts = true }) {
   const root = document.createElement('section');
   root.className = 'mission card';
   root.innerHTML = `
@@ -22,7 +22,7 @@ export function createMissionShell({ mission, onBack, onComplete, onContact, sto
   let blocked = false;
   const attempts = createAttemptController({
     hints: mission.hints,
-    initialCount: saved.attempts ?? 0,
+    initialCount: persistAttempts ? saved.attempts ?? 0 : 0,
     onHint(value) {
       hint.textContent = value;
       hint.hidden = false;
@@ -34,18 +34,19 @@ export function createMissionShell({ mission, onBack, onComplete, onContact, sto
       feedback.hidden = false;
     },
     onChange(count) {
+      if (!persistAttempts) return;
       store.write(mission.id, { ...store.read(mission.id), version: 1, attempts: count });
     }
   });
 
-  if (saved.attempts >= 7) {
+  if (persistAttempts && saved.attempts >= 7) {
     hint.textContent = mission.hints[1];
     hint.hidden = false;
-  } else if (saved.attempts >= 3) {
+  } else if (persistAttempts && saved.attempts >= 3) {
     hint.textContent = mission.hints[0];
     hint.hidden = false;
   }
-  if (saved.attempts >= 12) {
+  if (persistAttempts && saved.attempts >= 12) {
     blocked = true;
     contact.hidden = false;
     feedback.textContent = 'O arquivo não vai facilitar mais. Se quiser, peça ajuda ao criador.';
