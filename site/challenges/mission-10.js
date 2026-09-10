@@ -40,9 +40,14 @@ function isTargetSession(session) {
 }
 
 export function getMission10Timeline(answers = {}) {
+  // Aceita a lista na ordem das cenas para manter a validação reutilizável em testes,
+  // sem alterar o formato persistido pela interface (objeto por id).
+  const answersById = Array.isArray(answers)
+    ? Object.fromEntries(MISSION_10_SOUNDS.map((sound, index) => [sound.id, answers[index]]))
+    : answers;
   return [...MISSION_10_SOUNDS]
     .sort((left, right) => left.timecode.localeCompare(right.timecode))
-    .map((sound) => ({ ...sound, resolved: answers[sound.id] === sound.answer }));
+    .map((sound) => ({ ...sound, resolved: answersById[sound.id] === sound.answer }));
 }
 
 export function validateMission10Session(sessionId, answers = {}) {
