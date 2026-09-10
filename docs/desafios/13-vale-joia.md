@@ -17,7 +17,7 @@ Missão isolada em três travas: selecionar material, resolver uma grade lógica
 
 ## Dados fixos e trava 1 — material
 
-Mostrar todos os dados abaixo e pedir simultaneamente número atômico 79, densidade 19,3 g/cm³ e aparência amarela metálica:
+Mostrar todos os dados abaixo e pedir simultaneamente número atômico 79, densidade 19,3 g/cm³ e aparência amarela metálica, tudo isso através de charadas.
 
 | ID | Símbolo | Número atômico | Densidade | Aparência |
 |---|---|---:|---:|---|

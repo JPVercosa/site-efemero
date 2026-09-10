@@ -36,18 +36,18 @@ export const CONSTANTS = Object.freeze({
     3: Object.freeze({
       default: './assets/magnets/question.svg',
       done: './assets/magnets/magnet_mission_3.png',
-      fullBackground: true
+      fullBackground: false
     }),
     5: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_5.png', fullBackground: true }),
     // TODO: EDITAR quando os símbolos reais forem preparados.
-    7: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_7.png', fullBackground: true }),
+    7: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_7.png', fullBackground: false }),
     9: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_9.png', fullBackground: true }),
-    10: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
-    11: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
-    12: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
-    13: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
-    14: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false }),
-    15: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/question.svg', fullBackground: false })
+    10: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_10.png', fullBackground: true }),
+    11: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_11.png', fullBackground: true }),
+    12: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_12.png', fullBackground: false }),
+    13: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_13.png', fullBackground: false }),
+    14: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_14.png', fullBackground: true }),
+    15: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_15.png', fullBackground: true })
   }),
   featureFlags: Object.freeze({ showFuturePlaceholders: true })
 });

@@ -1,66 +1,131 @@
-# Desafio 11 — Vale Rodízio
+# Desafio 11 — Vale Rodízio: a volta incompleta
 
 ## Contrato da missão
 
-Missão isolada de ordenação modular. A resposta é derivada dos tempos de chegada de sete marcadores em um disco em rotação.
+Missão isolada de aritmética modular com um relógio analógico. A jogadora move
+um ponteiro a partir de 12 h, aplicando sete instruções angulares; cada chegada
+correta revela uma letra do mostrador. As sete chegadas formam a senha somente
+no fim. A palavra não aparece em título, metadados, tabelas, dicas ou conteúdo
+visível antes de ser calculada.
 
 | Campo | Valor |
 |---|---|
 | Data | 2026-09-11 |
 | Dificuldade | Alta |
 | Duração | 15–25 min |
-| Resposta | `RODÍZIO` |
+| Resposta | Palavra de sete letras derivada no relógio |
 
-## Fluxo fechado
+## Fluxo
 
-## Dados fixos
+`intro → painel do relógio → success`.
 
-`intro → calculation → answer → success`. A introdução mostra o disco estático, a janela e a fórmula; a tela de cálculo mostra tabela dos marcadores; a resposta só é validada depois que a tabela estiver disponível. Persistir `{ errors, completed }` na sessão; reset limpa e recarga restaura.
+1. Em **intro**, o bilhete diz: “Parta do I. Siga cada deslocamento; só as
+   chegadas contam.” Ele explica a convenção de sinais e que o ponto inicial
+   não é uma letra da senha.
+2. Em **painel do relógio**, ficam simultaneamente o mostrador, o ponteiro
+   manipulável, a transcrição acessível e as sete instruções. O último campo
+   de cada linha é uma caixa livre para a jogadora anotar a letra em que caiu.
+   Não há troca de tela entre observar, calcular, mover e registrar.
+3. O relógio não confirma cálculos, horas nem letras intermediárias. A jogadora
+   pode mover o ponteiro e preencher ou corrigir as sete caixas em qualquer
+   momento, usando o próprio raciocínio como guia.
+4. Quando as sete caixas estiverem preenchidas, o botão de validação compara a
+   sequência inteira com a senha derivada. Persistir `{ currentHour, letters,
+   completed }`; recarga restaura as anotações e reiniciar limpa o estado.
 
-- Janela: `θw = 5π/6`.
-- Velocidade: `ω = π/12 rad/min`.
-- Sentido: anti-horário.
-- Fórmula: `Δθ = (θw − θ0) mod 2π`, depois `t = Δθ / ω`.
+## Mostrador e ponto de partida
 
-| ID | Letra | `θ0` | `Δθ` | `t` |
-|---|---|---:|---:|---:|
-| R | R | `2π/3` | `π/6` | 2 min |
-| O1 | O | `π/2` | `π/3` | 4 min |
-| D | D | `π/3` | `π/2` | 6 min |
-| A | Í | `0` | `5π/6` | 10 min |
-| Z | Z | `3π/2` | `4π/3` | 16 min |
-| I | I | `4π/3` | `3π/2` | 18 min |
-| O2 | O | `7π/6` | `5π/3` | 20 min |
+O relógio usa 12 h como origem. A jogadora começa com o ponteiro em **12 h**,
+na letra **I**; essa é apenas a âncora inicial e não ocupa uma lacuna. Há uma
+única ocorrência de cada letra relevante no mostrador: retornos a uma mesma
+hora podem, portanto, repetir uma letra na senha sem duplicá-la no relógio.
 
-`O1` e `O2` são IDs distintos; a letra exibida é `O`. Usar frações/racionais ou valores inteiros de doze-avos, nunca arredondamento para decidir ordem.
+| Hora | 12 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Letra | I | Q | R | B | O | X | D | U | L | Z | V | M |
 
-## Mecânica, validador e solução
+As letras devem substituir os números na face do relógio e não formar uma
+linha de leitura. O relógio mostra a posição atual do ponteiro com um rótulo
+textual, como `Ponteiro em 4 h`; cor jamais é o único indicador.
 
-Calcular todos os sete tempos, ordenar por `(time, originalIndex)` apenas como proteção contra empate, e rejeitar se houver empate real. A ordem única é `R, O1, D, A, Z, I, O2`; as letras formam `RODÍZIO`. A enumeração deve confirmar sete tempos distintos e uma única ordenação. A entrada final não precisa reproduzir IDs, somente a palavra.
+## Instruções de rotação
 
-Normalizar Unicode NFD, remover acentos, pontuação, hífens e espaços externos, converter para maiúsculas; aceitar `RODÍZIO`, `RODIZIO`, `rodizio`; rejeitar ordem parcial, vírgulas, valores absolutos de ângulo ou qualquer palavra diferente.
+Executar as instruções abaixo **na ordem dada**, sempre a partir da posição em
+que o ponteiro terminou a instrução anterior. Não mostrar a hora de chegada,
+a letra resultante nem uma tabela de respostas junto a estas instruções.
 
-## Erros, acessibilidade e casos
+| Etapa | Deslocamento |
+|---|---|
+| 1 | `+2 h` |
+| 2 | `+π/3 rad` |
+| 3 | `+1 h + π/6 rad` |
+| 4 | `−π rad` |
+| 5 | `−1 h 30 min − π/4 rad` |
+| 6 | `−3π/2 rad` |
+| 7 | `+5 h − π/6 rad` |
 
-- erros 1–2: mensagem neutra;
-- erro 3: `Converta a diferença angular em tempo antes de ordenar as letras.`;
-- erro 7: `Os tempos são distintos; o menor tempo define a primeira letra.`;
-- erro 12: esconder entrada e deixar somente `Recorrer ao criador`.
+O sinal positivo move o ponteiro no sentido horário; o negativo, no sentido
+anti-horário. Uma hora corresponde a `π/6 rad`. A jogadora pode usar, para
+cada etapa:
 
-O diagrama precisa ter equivalente textual, foco visível, controles `44×44px`, suporte a teclado e modo `prefers-reduced-motion`; cor não pode ser o único sinal. Em 360px empilhar painel e tabela sem rolagem horizontal. Testar cada cálculo da tabela, variante sem acento, ordem errada, empate artificial, recarga/reset, limites de erro e bônus.
+```text
+Δh = horas + (radianos × 6 / π)
+hdestino = (hatual + Δh) mod 12
+```
 
-## Bônus
+No resultado modular, `0` representa 12 h. Todos os deslocamentos desta missão
+terminam em horas inteiras; não há arredondamento. A mistura proposital de
+horas e radianos exige que a jogadora converta unidades e trate deslocamentos
+negativos, em vez de apenas contar posições para a frente.
 
-Após o sucesso, mostrar o bloco decorativo `Voltar ao Rio Brasa Lagoa`; não usar como pista ou estado de outra missão.
+## Interação, validador e acessibilidade
 
+O ponteiro deve poder ser girado por arraste, teclado (setas avançam ou recuam
+uma hora) e botões equivalentes `−1 h` e `+1 h`. Ele encaixa apenas nas doze
+horas, mas seu uso é livre: não há confirmação de posição, cálculo ou etapa.
+Cada instrução tem uma caixa de uma letra, editável a qualquer momento, para a
+jogadora registrar a chegada que encontrou.
+
+Com as sete caixas preenchidas, concatenar seus conteúdos na ordem das etapas
+e comparar a sequência completa com a resposta derivada de `clockLetters`,
+`startHour` e `instructions`. O validador não armazena a palavra em texto claro
+no conteúdo renderizado. Normalizar a sequência em Unicode NFD, remover
+acentos, pontuação, hífens e espaços externos e converter para maiúsculas.
+Aceitar a variante sem acento quando aplicável; rejeitar sequência parcial ou
+uma palavra diferente. Não há dicas, contagem de erros ou checagens
+intermediárias nesta missão.
+O SVG precisa ter transcrição acessível com as doze horas/letras, o ponteiro,
+a posição atual, as instruções e o progresso das sete lacunas. A transcrição
+mantém o mostrador como posições, nunca como uma palavra linear. Oferecer foco
+visível, controles de ao menos 44×44 px, suporte completo a teclado e
+`prefers-reduced-motion`. Em 360 px, empilhar relógio, controles, instrução e
+transcrição sem rolagem horizontal. A rotação animada é decorativa: os botões,
+o teclado e a validação funcionam sem movimento.
 
 ## Critérios de aceite e testes
 
-- Os sete cálculos reproduzem exatamente 2, 4, 6, 10, 16, 18 e 20 minutos.
-- A ordenação única produz `RODÍZIO`; empate artificial é rejeitado de modo determinístico.
-- `RODIZIO` passa após normalização; outras ordens e palavras falham.
-- Testar erros 3/7/12, recarga, reset, teclado, movimento reduzido, leitor de tela e viewport 360px.
+- O mostrador inicial começa em 12 h na letra I, contém apenas um O e uma única
+  cópia de cada letra relevante; nenhuma palavra-resposta ou ordem de leitura é
+  exibida.
+- As sete instruções são resolvidas sequencialmente com aritmética modular,
+  incluindo instruções só em horas, só em radianos, mistas e negativas.
+- Cada linha mostra a instrução e uma caixa livre de uma letra; o relógio não
+  confirma nem bloqueia cálculos, posições ou anotações intermediárias.
+- O botão de validação só é habilitado depois que as sete caixas forem
+  preenchidas. A sequência completa é a única aceita; sua variante normalizada
+  sem acento também passa.
+- Testar retorno por radiano negativo, cada tipo de instrução, arraste,
+  teclado, edição das caixas, recarga, reset, leitor de tela, movimento reduzido
+  e viewport de 360 px.
+
+## Bônus
+
+Após o sucesso, mostrar o bloco decorativo `Voltar ao Rio Brasa Lagoa`; ele não
+é pista nem estado de outra missão.
 
 ## Assets obrigatórios
 
-Usar diagrama/SVG local do disco, janela e sete marcadores, sempre acompanhado da tabela textual. A animação é decorativa; o cálculo e a validação devem funcionar sem mídia ou movimento.
+Usar um SVG local de relógio analógico com doze letras, ponteiro interativo e
+sete lacunas de extração. A animação é decorativa e a transcrição textual acima
+é obrigatória; nenhum asset pode conter a palavra final em nome, `alt` ou texto
+visível antes da sétima chegada correta.

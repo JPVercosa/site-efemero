@@ -1,75 +1,88 @@
-# Desafio 10 — Vale-Cinema
+# Desafio 10 — Vale-Cinema: o corte perdido
 
-## Contrato da missão
+## Premissa
 
-Missão isolada sobre uma programação fictícia em VOSTFR. O jogador identifica uma sessão por filtros e resolve seis descrições sonoras textuais para extrair `CINEMA`. O áudio pode ser oferecido como reforço, mas a transcrição é o canal obrigatório e suficiente para resolver.
+Uma cópia sem identificação chega à cabine com seis cenas sonoras fora de ordem.
+O jogador identifica a sessão pelas notas do projecionista e escuta cada trecho
+para identificar o som que ele contém. Os timecodes remontam as cenas na ordem
+do filme; as iniciais das escolhas corretas formam a senha `CINEMA`.
 
 | Campo | Valor |
 |---|---|
 | Data | 2026-09-10 |
 | Dificuldade | Média-alta |
-| Duração | 18–25 min |
+| Duração | 15–20 min |
 | Resposta | `CINEMA` |
 
-## Fluxo fechado
+## Fluxo
 
-`intro → schedule → sound-1..6 → synthesis → success`. Em `schedule`, o jogador seleciona uma linha; só `Noite em Vermelho` (19:10) libera os sons. A seleção não é considerada correta até cumprir idioma `VOSTFR`, público `Casal`, legenda `Média` e posição entre `The Odyssey` (17:10) e `Obsession` (20:40). Sons são apresentados na ordem 1–6, um por vez, com três alternativas; seleção correta fixa o rótulo e libera o seguinte.
+`intro → briefing → mix → answer → success`.
 
-Persistir `{ sessionId, soundAnswers, errors, completed }` durante a sessão. Recarregar restaura; `Reiniciar` limpa. Erros de sessão, som e resposta final compartilham `errors`. O bônus só aparece em `success`.
+1. Em **briefing**, o jogador cruza quatro notas com a programação e escolhe uma cópia.
+2. Em **mix**, seis cenas chegam embaralhadas. Cada cartão inclui somente seu
+   timecode, player de áudio e três escolhas — não há descrição textual do som.
+3. Quando as seis cenas foram identificadas, em **answer** elas aparecem na
+   ordem do timecode. As iniciais das escolhas formam a senha final.
 
-## Dataset da programação
+Persistir `{ stage, sessionId, soundAnswers }`. Recarga restaura o progresso;
+reiniciar apaga o estado. O bônus só aparece após a confirmação final.
 
-| Hora | Título | Idioma | Legenda | Público |
-|---|---|---|---|---|
-| 17:10 | The Odyssey | VO | Básica | Solo |
-| 18:20 | Linha de Maré | VOSTFR | Baixa | Casal |
-| 19:10 | Noite em Vermelho | VOSTFR | Média | Casal |
-| 20:40 | Obsession | VF | Alta | Grupo |
-| 22:15 | Última Dobra | VOSTFR | Média | Solo |
+## Arquivo da cabine
 
-As referências nominais são apenas texto fictício de programação; não carregar filmes, trailers ou dados externos.
+### Notas do projecionista
 
-## Dataset sonoro textual
+1. A cópia procurada é legendada em francês; não é dublada.
+2. A legenda foi marcada como média pela cabine.
+3. É uma sessão para duas pessoas, não uma sessão solo ou de grupo.
+4. Ela entra depois da travessia e antes da sessão dublada.
 
-| # | Descrição acessível | Opções | Correta | Inicial |
-|---:|---|---|---|---|
-| 1 | várias vozes sustentando a mesma nota | `Coro`, `Solo`, `Sopro` | Coro | C |
-| 2 | impacto grave único, sem repetição | `Ritmo`, `Impacto`, `Eco` | Impacto | I |
-| 3 | casco de madeira, ondas e corda tensionada | `Navio`, `Trem`, `Vento` | Navio | N |
-| 4 | palma seguida de reverberação longa | `Ruído`, `Eco`, `Silêncio` | Eco | E |
-| 5 | cliques regulares em frequência constante | `Chuva`, `Marcha`, `Metrônomo` | Metrônomo | M |
-| 6 | plateia batendo palmas | `Passos`, `Porta`, `Aplauso` | Aplauso | A |
+### Programação fictícia
 
-O código é a concatenação das iniciais das seis escolhas corretas: `CINEMA`. A tela não exibe iniciais antes de cada escolha correta, mas mostra o rótulo já resolvido.
+| Hora | Título | Idioma | Legenda | Público | Rolo |
+|---|---|---|---|---|---|
+| 17:10 | The Odyssey | VO | Básica | Solo | A |
+| 18:20 | Linha de Maré | VOSTFR | Baixa | Casal | B |
+| 19:10 | Noite em Vermelho | VOSTFR | Média | Casal | C |
+| 20:40 | Obsession | VF | Alta | Grupo | D |
+| 22:15 | Última Dobra | VOSTFR | Média | Solo | E |
 
-## Mecânica, validação e resposta
+Somente **Noite em Vermelho**, às 19:10, cumpre todas as notas.
 
-Aceitar sessão somente se a linha for exatamente a de 19:10 e todas as seis escolhas forem corretas na ordem. A seleção de uma alternativa errada não avança e incrementa erro. Validar o campo final apenas em `synthesis`. Normalizar NFD, remover acentos, artigo inicial `O/A` isolado, pontuação e espaços; aceitar `CINEMA`, `cinema`, `o cinema` e `cinéma`; rejeitar `cine`, `filme`, títulos e frases extras.
+## Cenas sonoras
 
-## Solução e unicidade
+Os assets abaixo substituem as antigas descrições textuais. Os nomes dos arquivos
+não podem ser exibidos para o jogador; a interface usa players nativos e escolhas
+textuais para cada cena.
 
-A enumeração da tabela e das seis escolhas deve produzir uma única solução: a sessão de 19:10 e o código `CINEMA`.
+| Cena | Timecode | Arquivo | Escolhas | Correta | Inicial |
+|---|---|---|---|---|---|
+| A | 00:42 | `applause-4.mp3` | Passos, Porta, Aplauso | Aplauso | A |
+| B | 00:25 | `eco.mp3` | Ruído, Eco, Silêncio | Eco | E |
+| C | 00:07 | `coro.mp3` | Coro, Solo, Sopro | Coro | C |
+| D | 00:33 | `metronome.mp3` | Chuva, Marcha, Metrônomo | Metrônomo | M |
+| E | 00:19 | `navio.mp3` | Navio, Trem, Vento | Navio | N |
+| F | 00:13 | `impact.mp3` | Ritmo, Impacto, Eco | Impacto | I |
 
-## Dicas, acessibilidade e casos
+Pela ordem dos timecodes (`00:07`, `00:13`, `00:19`, `00:25`, `00:33`, `00:42`),
+as escolhas são **Coro, Impacto, Navio, Eco, Metrônomo, Aplauso**: `CINEMA`.
+Esta tabela é documentação de produção; as colunas de arquivo e solução não são
+conteúdo visível na missão.
 
-- erro 3: `Procure a sessão entre as duas referências nominais.`
-- erro 7: `A sessão certa é a única VOSTFR de casal com legenda média. As camadas formam uma palavra de seis letras.`
-- erro 12: somente `Recorrer ao criador`, sem resposta ou sequência revelada.
+## Validação e acessibilidade
 
-Testar unicidade dos filtros, cada alternativa errada, ordem dos sons, recarga, reset, final antes de completar, erro 3/7/12, teclado, leitor de tela e viewport 360px. O alvo deve permanecer legível sem depender de cor ou áudio.
+- Uma cópia só é válida se for a sessão de 19:10 e atender a todas as notas.
+- Uma escolha errada não identifica a cena nem libera o próximo passo.
+- Cada player possui rótulo acessível neutro (`Áudio da Cena A`, por exemplo) e
+  fallback para navegadores sem suporte a áudio.
+- Os controles de escolha são botões nativos; o progresso tem região viva e a
+  sequência final é uma lista semântica.
+- Erro 3: `Leia as notas como um conjunto; horário também elimina cópias.`
+- Erro 7: `As cenas estão fora de ordem. Use os timecodes depois de identificá-las.`
+- Erro 12: mostrar apenas `Recorrer ao criador`, sem entregar a solução.
 
-## Bônus
+## Critérios de aceite
 
-Em `success`, mostrar o epílogo fixo `Noite a dois em VOSTFR`; é decorativo e não participa da solução.
-
-
-## Critérios de aceite e testes
-
-- Apenas a sessão de 19:10 satisfaz simultaneamente os filtros documentados.
-- As seis respostas corretas, na ordem, produzem `CINEMA`; não é possível avançar com alternativa errada.
-- A resposta final, dicas, bloqueio, persistência, reset, teclado, leitor de tela e viewport 360px seguem o contrato acima.
-- Testar áudio indisponível: a transcrição acessível deve manter o fluxo resolvível.
-
-## Assets obrigatórios
-
-Usar tabela HTML para a programação e seis cartões de som com botão de reprodução opcional e transcrição sempre visível. Não usar mídia licenciada, trailer ou dado externo; a ausência de áudio não pode bloquear a resolução.
+- Os seis players usam exclusivamente os arquivos de `site/assets/sounds/`.
+- Nenhuma descrição textual substitui os áudios como pista de identificação.
+- Apenas as seis escolhas corretas liberam a linha do tempo, que extrai `CINEMA`.
+- Estado, reset, teclado, leitor de tela e viewport de 360 px preservam o fluxo.

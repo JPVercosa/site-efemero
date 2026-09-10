@@ -24,7 +24,7 @@ As referências do relacionamento aparecem principalmente depois de cada soluç�
 | 07/09 | Última milha | `IFOOD` | Segundo vale |
 | 09/09 | Atlas fragmentado | `PRAIA` | Terceiro vale |
 | 10/09 | Sessão VOSTFR | `CINEMA` | Quarto vale |
-| 11/09 | Dinâmica de rotação | `RODÍZIO` | Quinto vale |
+| 11/09 | Dinâmica de rotação | Palavra derivada no relógio | Quinto vale |
 | 12/09 | Dois tabuleiros de SET | `JAPONÊS` | Sexto vale |
 | 13/09 | Cofre dourado | `JOIA` | Sétimo vale e maior valor |
 | 14/09 | Artefato principal | `CARTA` | Revela a existência da carta |

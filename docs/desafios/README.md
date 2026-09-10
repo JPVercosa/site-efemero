@@ -12,7 +12,7 @@ Cada arquivo desta pasta é a especificação completa e implementável de uma m
 | 07/09 | [Vale iFood](07-vale-ifood.md) | `IFOOD` |
 | 09/09 | [Vale praia](09-vale-praia.md) | `PRAIA` |
 | 10/09 | [Vale cinema](10-vale-cinema.md) | `CINEMA` |
-| 11/09 | [Vale rodízio](11-vale-rodizio.md) | `RODÍZIO` |
+| 11/09 | [Vale rodízio](11-vale-rodizio.md) | Palavra derivada no relógio |
 | 12/09 | [Vale japonês](12-vale-japones.md) | `JAPONÊS` |
 | 13/09 | [Vale joia](13-vale-joia.md) | `JOIA` |
 | 14/09 | [Artefato: carta](14-artefato-carta.md) | `CARTA` |
