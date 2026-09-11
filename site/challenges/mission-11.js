@@ -105,7 +105,7 @@ export function mountMission11(host, context) {
           <div class="mission-11-heading"><div><p class="eyebrow">PAINEL DE ROTAÇÃO</p><h2>Siga as chegadas</h2><p>Converta e aplique cada deslocamento no relógio. As letras que você anotar formarão a sequência.</p></div><p class="mission-11-position" data-position aria-live="polite">Ponteiro em ${displayClockHour(currentHour)} h</p></div>
           <div class="mission-11-workspace">
             <div class="mission-11-clock-wrap"><p class="mission-11-drag-note">Arraste o ponteiro, escolha uma letra ou avance uma hora.</p>${renderClock(currentHour, disabled)}<div class="mission-11-nudge-controls" aria-label="Ajustar ponteiro"><button class="button ghost" type="button" data-adjust="-1" ${disabled ? 'disabled' : ''}>−1 h</button><button class="button ghost" type="button" data-adjust="1" ${disabled ? 'disabled' : ''}>+1 h</button></div></div>
-            <div class="mission-11-notes"><p class="mission-11-formula">1 h = π/6 rad<br>0 no módulo = 12 h</p>${renderInstructions(letters, disabled)}</div>
+            <div class="mission-11-notes">${renderInstructions(letters, disabled)}</div>
           </div>
           <form class="mission-11-sequence" data-sequence>
             <p>Quando registrar as sete letras, valide a sequência.</p><button class="button primary" type="submit" ${!allLettersFilled || disabled ? 'disabled' : ''}>Validar sequência</button>
