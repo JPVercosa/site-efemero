@@ -7,6 +7,8 @@ import { mountMission09 } from './mission-09.js';
 import { mountMission10 } from './mission-10.js';
 import { mountMission11 } from './mission-11.js';
 import { mountMission12 } from './mission-12.js';
+import { mountMission13 } from './mission-13.js';
+import { mountMission14 } from './mission-14.js';
 
 const future = (id, title) => ({
   id,
@@ -26,8 +28,8 @@ export const MISSIONS = Object.freeze([
   { id: 10, unlockAt: CONSTANTS.releaseDates[10], title: 'O corte perdido', kicker: 'REGISTRO 10', subtitle: 'Reconstrua a sessÃ£o certa e devolva seis etiquetas Ã  ordem da cena.', implemented: true, mount: mountMission10, hints: ['Leia as notas como um conjunto; o horÃ¡rio tambÃ©m elimina cÃ³pias.', 'As faixas nÃ£o estÃ£o na ordem da cena. Deixe os timecodes ordenar o corte.'] },
   { id: 11, unlockAt: CONSTANTS.releaseDates[11], title: 'A volta incompleta', kicker: 'REGISTRO 11', subtitle: 'Converta os deslocamentos e siga o ponteiro pelas sete chegadas.', implemented: true, mount: mountMission11, hints: [] },
   { id: 12, unlockAt: CONSTANTS.releaseDates[12], title: 'Dois conjuntos', kicker: 'REGISTRO 12', subtitle: 'Leia a mesa, encontre os dois SETs e guarde as sílabas.', implemented: true, mount: mountMission12, hints: ['Em cada atributo, não pode haver apenas duas cartas iguais.', 'Os dois SETs soletram dois nomes quando você lê as sílabas.'] },
-  future(13, 'O cofre dourado'),
-  future(14, 'A porta e as quatro lÃ­nguas'),
+  { id: 13, unlockAt: CONSTANTS.releaseDates[13], title: 'O golpe da vitrine', kicker: 'REGISTRO 13', subtitle: 'Desarme os sensores, calibre os discos e abra o cofre.', implemented: true, mount: mountMission13, hints: ['Comece pelas linhas e colunas; use as áreas para desempatar.', 'Configure corretamente e utilize os valores encontrados no disco.'] },
+  { id: 14, unlockAt: CONSTANTS.releaseDates[14], title: 'A entrega perdida', kicker: 'REGISTRO 14', subtitle: 'Lance o dado e conduza a entrega até a última casa.', implemented: true, mount: mountMission14, hints: ['A resposta não veio das casas. Observe a legenda.', 'Leia a primeira letra de cada selo, de cima para baixo.'] },
   future(15, 'Ãšltima milha')
 ]);
 

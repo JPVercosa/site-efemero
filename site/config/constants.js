@@ -45,7 +45,7 @@ export const CONSTANTS = Object.freeze({
     10: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_10.png', fullBackground: true }),
     11: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_11.png', fullBackground: true }),
     12: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_12.png', fullBackground: false }),
-    13: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_13.png', fullBackground: false }),
+    13: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_13.png', fullBackground: true }),
     14: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_14.png', fullBackground: true }),
     15: Object.freeze({ default: './assets/magnets/question.svg', done: './assets/magnets/magnet_mission_15.png', fullBackground: true })
   }),

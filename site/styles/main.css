@@ -1109,3 +1109,129 @@ legend { padding-inline: 8px; color: var(--accent); font-weight: 800; }
 .mission-12-answer-row { display: flex; gap: 10px; }
 .mission-12-answer-row input { flex: 1 1 auto; min-width: 0; }
 @media (max-width: 480px) { .mission-12-answer-row { flex-direction: column; } .mission-12-answer-row .button { width: 100%; } }
+
+/* Missão 13 — vitrine, discos de César e bancada de anagrama. */
+.mission-13-flow { gap: 22px; }
+.mission-13-intro, .mission-13-vitrine, .mission-13-disks, .mission-13-anagram, .mission-13-success { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(135deg, #171e24, #0d161d); }
+.mission-13-flow section[hidden] { display: none; }
+.mission-13-flow section > div:first-child > p:not(.eyebrow), .mission-13-intro > p:not(.eyebrow), .mission-13-anagram-help { color: var(--muted); line-height: 1.6; }
+.mission-13-board-wrap { display: grid; grid-template-columns: minmax(220px, 390px) minmax(140px, 1fr); align-items: center; gap: 20px; }
+.mission-13-code-scale { display: grid; grid-template-columns: repeat(4, 1fr); width: min(100%, 390px); margin-bottom: 7px; color: var(--accent); font-size: .9rem; font-weight: 900; text-align: center; }
+.mission-13-code-scale span::before { content: 'CÓDIGO '; color: var(--muted); font-size: .55rem; }
+.mission-13-board { display: grid; grid-template-columns: repeat(4, minmax(44px, 1fr)); width: min(100%, 390px); overflow: hidden; border: 3px solid #9a7a4e; border-radius: 14px; box-shadow: 0 18px 38px #0006; }
+.mission-13-cell { display: grid; min-width: 44px; aspect-ratio: 1; padding: 0; border: 1px solid #071017aa; color: #fff7e7; place-items: center; font-size: clamp(1.4rem, 5vw, 2.35rem); text-shadow: 0 2px 5px #000; cursor: pointer; }
+.mission-13-cell:disabled { opacity: 1; cursor: default; }
+.mission-13-cell.state-mark { color: #e8eff3aa; }
+.mission-13-cell.state-queen span { filter: drop-shadow(0 0 7px #fff8); transform: rotate(45deg); }
+.mission-13-cell:focus-visible { position: relative; z-index: 2; outline: 4px solid #fff; outline-offset: -5px; }
+.mission-13-cell.region-esmeralda, .mission-13-legend .region-esmeralda { background-color: #25694f; background-image: repeating-linear-gradient(45deg, transparent 0 8px, #fff1 8px 10px); }
+.mission-13-cell.region-ambar, .mission-13-legend .region-ambar { background-color: #9b6b20; background-image: radial-gradient(#fff2 18%, transparent 20%); background-size: 12px 12px; }
+.mission-13-cell.region-rubi, .mission-13-legend .region-rubi { background-color: #8b3441; background-image: repeating-linear-gradient(90deg, transparent 0 9px, #fff1 9px 11px); }
+.mission-13-cell.region-safira, .mission-13-legend .region-safira { background-color: #315c91; background-image: repeating-linear-gradient(-45deg, transparent 0 8px, #fff1 8px 10px); }
+.mission-13-legend { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.mission-13-legend li { display: flex; align-items: center; gap: 10px; color: var(--muted); font-weight: 750; }
+.mission-13-legend span { width: 30px; height: 30px; border: 1px solid #ffffff66; border-radius: 7px; }
+.mission-13-calibration { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.mission-13-key-explanation { display: grid; gap: 12px; padding: 14px; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: #211b14; }
+.mission-13-key-explanation > p { margin: 0; color: #f4d5ae; line-height: 1.55; }
+.mission-13-calibration li { display: grid; justify-items: center; gap: 2px; padding: 10px 5px; border: 1px solid #725b39; border-radius: 10px; background: #211b14; color: var(--muted); }
+.mission-13-calibration strong { color: var(--accent); font-size: 1.15rem; }
+.mission-13-calibration code { color: var(--ink); font-size: clamp(.72rem, 1.5vw, .9rem); text-align: center; }
+.mission-13-calibration math { min-height: 2.6rem; color: var(--ink); font-size: clamp(1rem, 2vw, 1.25rem); }
+.mission-13-calibration li { min-width: 0; overflow: hidden; }
+.mission-13-dials { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 12px; }
+.mission-13-dial { display: grid; justify-items: center; gap: 6px; padding: 15px 10px; border: 1px solid #536675; border-radius: 50% 50% 15px 15px; background: radial-gradient(circle at 50% 38%, #314450, #0b141b 68%); box-shadow: inset 0 0 0 5px #071018, 0 10px 22px #0004; }
+.mission-13-dial > span { color: var(--muted); font-size: .75rem; font-weight: 850; text-transform: uppercase; }
+.mission-13-dial > strong { display: grid; width: 58px; height: 58px; border: 2px solid #a98148; border-radius: 50%; color: #ffdaa4; background: #171109; place-items: center; font-size: 1.9rem; }
+.mission-13-dial > small { color: var(--muted); }
+.mission-13-dial > div { display: flex; gap: 6px; }
+.mission-13-dial button { min-width: 44px; min-height: 44px; border: 1px solid #536675; border-radius: 9px; background: #13232f; color: var(--ink); font-weight: 900; }
+.mission-13-tiles { display: flex; justify-content: center; gap: 12px; }
+.mission-13-tile { display: grid; width: 72px; height: 82px; border: 2px solid #a98148; border-radius: 13px; color: #261707; background: linear-gradient(145deg, #ffe0aa, #bc8344); box-shadow: 0 8px 18px #0005; place-items: center; font-size: 2rem; font-weight: 950; cursor: grab; transition: transform .15s ease; }
+.mission-13-tile:hover:not(:disabled), .mission-13-tile.is-selected { transform: translateY(-5px); }
+.mission-13-tile.is-selected { outline: 3px solid #fff; outline-offset: 3px; }
+.mission-13-text-answer { display: grid; gap: 7px; max-width: 360px; color: var(--ink); font-weight: 800; }
+.mission-13-text-answer input { letter-spacing: .3em; text-transform: uppercase; }
+.mission-13-message { min-height: 1.5em; margin: 0; font-weight: 750; }
+.mission-13-message[data-type="error"] { color: var(--danger); }
+.mission-13-message[data-type="success"] { color: var(--success); }
+.mission-13-success { border-color: #8c6b37; background: linear-gradient(135deg, #2b2011, #10191d); }
+.mission-13-success h2 { color: #ffd79c; font-size: clamp(1.8rem, 5vw, 3rem); }
+.mission-13-memories { margin-top: 8px; padding: 17px; border: 1px dashed #a98148; border-radius: 13px; background: #171109aa; }
+.mission-13-memories h3, .mission-13-memories p { margin: 0 0 8px; }
+.mission-13-memories ul { display: grid; gap: 7px; margin-bottom: 0; }
+@media (max-width: 720px) { .mission-13-board-wrap { grid-template-columns: 1fr; } .mission-13-legend { grid-template-columns: repeat(2, 1fr); } .mission-13-dials { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .mission-13-calibration { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .mission-13-intro, .mission-13-vitrine, .mission-13-disks, .mission-13-anagram, .mission-13-success { padding: 14px; } .mission-13-code-scale span::before { content: ''; } .mission-13-calibration { gap: 7px; } .mission-13-calibration li { font-size: .76rem; } .mission-13-tiles { gap: 7px; } .mission-13-tile { width: 58px; height: 68px; } }
+@media (prefers-reduced-motion: reduce) { .mission-13-tile { transition: none; } }
+@media (forced-colors: active) { .mission-13-cell { border: 2px solid CanvasText; } .mission-13-cell.state-queen { outline: 3px solid Highlight; outline-offset: -6px; } }
+
+/* Missão 14 — jogo postal de sobe e desce. */
+.mission-14-flow { gap: 20px; }
+.mission-14-flow section[hidden], .mission-14-controls[hidden] { display: none; }
+.mission-14-intro, .mission-14-game, .mission-14-arrival, .mission-14-answer, .mission-14-success { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(135deg, #17232c, #0c151c); }
+.mission-14-intro p:not(.eyebrow), .mission-14-arrival p:not(.eyebrow), .mission-14-answer p:not(.eyebrow) { color: var(--muted); line-height: 1.6; }
+.mission-14-status { display: flex; align-items: end; justify-content: space-between; gap: 14px; }
+.mission-14-status h2, .mission-14-status p { margin: 0; }
+.mission-14-status > div:last-child { display: flex; flex-wrap: wrap; justify-content: end; gap: 7px; }
+.mission-14-status > div:last-child span { padding: 6px 9px; border: 1px solid #536675; border-radius: 999px; color: var(--muted); font-size: .78rem; font-weight: 800; }
+.mission-14-no-returns { margin: 0; padding: 11px 13px; border: 1px solid #4f8968; border-radius: 10px; color: #a8dfba; background: #102219; font-weight: 800; }
+.mission-14-layout { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(210px, .58fr); align-items: start; gap: 18px; }
+.mission-14-board { position: relative; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); width: 100%; aspect-ratio: 1; overflow: hidden; border: 3px solid #8e7048; border-radius: 15px; background: #081118; box-shadow: 0 16px 34px #0005; }
+.mission-14-board-arrows { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mission-14-board-arrows path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 7 7; filter: drop-shadow(0 1px 2px #000); opacity: .82; }
+.mission-14-board-arrows .arrow-atalho { stroke: #8ce7ad; }
+.mission-14-board-arrows .arrow-retorno { stroke: #ff9ca8; }
+.mission-14-board-arrows #mission-14-arrow-up path { fill: #8ce7ad; }
+.mission-14-board-arrows #mission-14-arrow-back path { fill: #ff9ca8; }
+.mission-14-cell { position: relative; display: grid; min-width: 0; min-height: 0; overflow: hidden; padding: 5px; border: 1px solid #ffffff26; color: var(--ink); background: #13232f; place-items: center; }
+.mission-14-cell:nth-child(even) { background: #182a35; }
+.mission-14-cell > span { position: absolute; top: 5px; left: 6px; color: #a8bac4; font-size: clamp(.65rem, 1.4vw, .82rem); font-weight: 900; }
+.mission-14-cell > small { max-width: 100%; color: #d9e4e8; font-size: clamp(.48rem, 1.05vw, .67rem); font-weight: 800; text-align: center; text-transform: uppercase; }
+.mission-14-cell > span, .mission-14-cell > small, .mission-14-cell > em, .mission-14-cell > b { z-index: 2; }
+.mission-14-cell > em { position: absolute; right: 5px; bottom: 4px; padding: 1px 3px; border-radius: 4px; color: #fff; background: #071018bb; font-size: clamp(.56rem, 1.1vw, .72rem); font-style: normal; font-weight: 900; }
+.mission-14-cell > b { display: grid; width: clamp(28px, 5vw, 46px); height: clamp(28px, 5vw, 46px); border: 2px solid #ffcf89; border-radius: 8px; color: #261707; background: #f1c27d; box-shadow: 0 0 0 4px #f1c27d33, 0 5px 12px #0006; place-items: center; font-size: clamp(1rem, 2.5vw, 1.5rem); }
+.mission-14-cell.is-current { z-index: 1; outline: 3px solid #fff3d4; outline-offset: -4px; }
+.mission-14-cell.cell-atalho { background: linear-gradient(145deg, #245a43, #153527); }
+.mission-14-cell.cell-retorno { background: repeating-linear-gradient(135deg, #702f3b 0 8px, #602732 8px 16px); }
+.mission-14-cell.cell-transito { background: repeating-linear-gradient(45deg, #735a22 0 7px, #493a1b 7px 14px); }
+.mission-14-cell.cell-abrigo { background: radial-gradient(circle, #315c91, #1c395c); }
+.mission-14-cell.cell-destino { background: linear-gradient(145deg, #9b6b20, #493417); }
+.mission-14-layout aside { padding: 15px; border: 1px solid var(--line); border-radius: 14px; background: #0b141b; }
+.mission-14-layout aside h3 { margin: 0 0 12px; }
+.mission-14-legend { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.mission-14-legend li { display: flex; align-items: center; gap: 9px; padding: 8px; border: 1px solid #334854; border-radius: 9px; }
+.mission-14-legend li > div { display: grid; gap: 2px; }
+.mission-14-legend small { color: var(--muted); line-height: 1.35; }
+.mission-14-legend mark { padding: 0; color: #251606; background: #f2b56b; }
+.mission-14-stamp { display: grid; width: 38px; height: 38px; flex: 0 0 auto; border: 1px solid #ffffff44; border-radius: 7px; color: #fff; place-items: center; font-size: 1.1rem; font-weight: 900; text-shadow: 0 1px 3px #000; transform: rotate(-3deg); }
+.mission-14-stamp.stamp-caminho { background: #182a35; }
+.mission-14-stamp.stamp-atalho { background: linear-gradient(145deg, #245a43, #153527); }
+.mission-14-stamp.stamp-retorno { background: repeating-linear-gradient(135deg, #702f3b 0 6px, #602732 6px 12px); }
+.mission-14-stamp.stamp-transito { background: repeating-linear-gradient(45deg, #735a22 0 6px, #493a1b 6px 12px); }
+.mission-14-stamp.stamp-abrigo { background: radial-gradient(circle, #315c91, #1c395c); }
+.mission-14-controls { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 86px; padding: 14px; border: 1px dashed #536675; border-radius: 13px; background: #0b141b; text-align: center; }
+.mission-14-controls > div { display: flex; gap: 8px; }
+.mission-14-controls p { margin: 0; color: var(--muted); }
+.mission-14-moving { animation: mission-14-pulse .7s ease-in-out infinite alternate; }
+@keyframes mission-14-pulse { from { opacity: .55; } to { opacity: 1; } }
+.mission-14-die { display: block; width: 64px; height: 64px; flex: 0 0 auto; border: 2px solid #a98148; border-radius: 13px; background: #000; box-shadow: 0 7px 15px #0005; transform: rotate(-2deg); }
+.mission-14-history { display: grid; gap: 5px; margin: 0; padding: 0; color: var(--muted); list-style: none; }
+.mission-14-history li { padding: 7px 10px; border: 1px solid #405463; border-left: 4px solid #607989; border-radius: 0 8px 8px 0; color: #b9c8cf; background: #101c24; font-size: .86rem; }
+.mission-14-history li.history-atalho { border-color: #397858; border-left-color: #79d39b; color: #a9dfba; background: #102219; }
+.mission-14-history li.history-retorno { border-color: #81404b; border-left-color: #f08a98; color: #f2adb6; background: #29151a; }
+.mission-14-history li.history-transito { border-color: #80672c; border-left-color: #e3bd59; color: #efd681; background: #29220f; }
+.mission-14-history li.history-abrigo { border-color: #3d6090; border-left-color: #7eadeb; color: #b0ceef; background: #111f33; }
+.mission-14-answer form { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 10px; }
+.mission-14-answer label { display: grid; gap: 6px; font-weight: 800; }
+.mission-14-message { min-height: 1.4em; margin: 0; font-weight: 800; }
+.mission-14-message[data-type="error"] { color: var(--danger); }
+.mission-14-message[data-type="success"] { color: var(--success); }
+.mission-14-success { border-color: #8e7048; background: linear-gradient(135deg, #2b2011, #10191d); }
+.mission-14-success h2 { color: #ffd69a; }
+.mission-14-memory { padding: 15px; border: 1px dashed #a98148; border-radius: 12px; background: #171109aa; }
+.mission-14-memory h3, .mission-14-memory p { margin: 0 0 7px; }
+.mission-14-memory code { color: var(--accent); font-size: 1.2rem; letter-spacing: .18em; }
+@media (max-width: 720px) { .mission-14-layout { grid-template-columns: 1fr; } .mission-14-layout aside { order: 2; } }
+@media (max-width: 500px) { .mission-14-intro, .mission-14-game, .mission-14-arrival, .mission-14-answer, .mission-14-success { padding: 13px; } .mission-14-status, .mission-14-controls { align-items: stretch; flex-direction: column; } .mission-14-status > div:last-child { justify-content: start; } .mission-14-board { grid-template-columns: repeat(8, minmax(0, 1fr)); } .mission-14-cell { padding: 1px; } .mission-14-cell > small { display: none; } .mission-14-cell > em { right: 2px; bottom: 2px; font-size: .48rem; } .mission-14-controls > div, .mission-14-answer form { grid-template-columns: 1fr; flex-direction: column; } .mission-14-controls .button, .mission-14-answer .button { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .mission-14-stamp, .mission-14-die { transform: none; } .mission-14-moving { animation: none; } }
