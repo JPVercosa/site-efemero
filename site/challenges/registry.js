@@ -9,6 +9,7 @@ import { mountMission11 } from './mission-11.js';
 import { mountMission12 } from './mission-12.js';
 import { mountMission13 } from './mission-13.js';
 import { mountMission14 } from './mission-14.js';
+import { mountMission15 } from './mission-15.js';
 
 const future = (id, title) => ({
   id,
@@ -30,7 +31,7 @@ export const MISSIONS = Object.freeze([
   { id: 12, unlockAt: CONSTANTS.releaseDates[12], title: 'Dois conjuntos', kicker: 'REGISTRO 12', subtitle: 'Leia a mesa, encontre os dois SETs e guarde as sílabas.', implemented: true, mount: mountMission12, hints: ['Em cada atributo, não pode haver apenas duas cartas iguais.', 'Os dois SETs soletram dois nomes quando você lê as sílabas.'] },
   { id: 13, unlockAt: CONSTANTS.releaseDates[13], title: 'O golpe da vitrine', kicker: 'REGISTRO 13', subtitle: 'Desarme os sensores, calibre os discos e abra o cofre.', implemented: true, mount: mountMission13, hints: ['Comece pelas linhas e colunas; use as áreas para desempatar.', 'Configure corretamente e utilize os valores encontrados no disco.'] },
   { id: 14, unlockAt: CONSTANTS.releaseDates[14], title: 'A entrega perdida', kicker: 'REGISTRO 14', subtitle: 'Lance o dado e conduza a entrega até a última casa.', implemented: true, mount: mountMission14, hints: ['A resposta não veio das casas. Observe a legenda.', 'Leia a primeira letra de cada selo, de cima para baixo.'] },
-  future(15, 'Ãšltima milha')
+  { id: 15, unlockAt: CONSTANTS.releaseDates[15], title: 'Última milha', kicker: 'REGISTRO 15', subtitle: 'Depois de tantos desafios, resta apenas decifrar a última charada.', implemented: true, mount: mountMission15, hints: [] }
 ]);
 
 export function getMission(id) {

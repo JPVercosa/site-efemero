@@ -34,8 +34,8 @@ import {
 } from '../site/challenges/mission-09.js';
 
 test('registro implementa as missões prontas para esta entrega', () => {
-  assert.deepEqual(MISSIONS.filter((mission) => mission.implemented).map((mission) => mission.id), [1, 3, 5, 7, 9, 10, 11, 12, 13, 14]);
-  assert.equal(MISSIONS.filter((mission) => !mission.implemented).length, 1);
+  assert.deepEqual(MISSIONS.filter((mission) => mission.implemented).map((mission) => mission.id), [1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15]);
+  assert.equal(MISSIONS.filter((mission) => !mission.implemented).length, 0);
 });
 
 test('missão 01 aceita a classificação canônica', () => {

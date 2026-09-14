@@ -1235,3 +1235,20 @@ legend { padding-inline: 8px; color: var(--accent); font-weight: 800; }
 @media (max-width: 720px) { .mission-14-layout { grid-template-columns: 1fr; } .mission-14-layout aside { order: 2; } }
 @media (max-width: 500px) { .mission-14-intro, .mission-14-game, .mission-14-arrival, .mission-14-answer, .mission-14-success { padding: 13px; } .mission-14-status, .mission-14-controls { align-items: stretch; flex-direction: column; } .mission-14-status > div:last-child { justify-content: start; } .mission-14-board { grid-template-columns: repeat(8, minmax(0, 1fr)); } .mission-14-cell { padding: 1px; } .mission-14-cell > small { display: none; } .mission-14-cell > em { right: 2px; bottom: 2px; font-size: .48rem; } .mission-14-controls > div, .mission-14-answer form { grid-template-columns: 1fr; flex-direction: column; } .mission-14-controls .button, .mission-14-answer .button { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .mission-14-stamp, .mission-14-die { transform: none; } .mission-14-moving { animation: none; } }
+
+/* Missão 15 — charada da última milha. */
+.mission-15-flow { gap: 22px; }
+.mission-15-flow section[hidden] { display: none; }
+.mission-15-intro, .mission-15-riddle, .mission-15-success { padding: clamp(16px, 4vw, 28px); border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(135deg, #17232c, #0c151c); }
+.mission-15-intro > p:not(.eyebrow), .mission-15-success > p:not(.eyebrow) { color: var(--muted); line-height: 1.65; }
+.mission-15-poem { display: grid; gap: 1.35rem; margin: 8px 0 4px; padding: clamp(18px, 4vw, 30px); border: 1px solid #725b39; border-left: 4px solid var(--accent); border-radius: 4px 14px 14px 4px; background: linear-gradient(145deg, #211b14, #10191d); color: #f4dfc5; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1rem, 2.2vw, 1.14rem); line-height: 1.8; }
+.mission-15-poem p { margin: 0; }
+.mission-15-answer { display: grid; gap: 8px; }
+.mission-15-answer label { font-weight: 800; }
+.mission-15-answer > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+.mission-15-message { min-height: 1.5em; margin: 0; font-weight: 800; }
+.mission-15-message[data-type="error"] { color: var(--danger); }
+.mission-15-success { border-color: #8e7048; background: linear-gradient(135deg, #2b2011, #10191d); }
+.mission-15-success h2 { color: #ffd69a; }
+@media (max-width: 500px) { .mission-15-answer > div { grid-template-columns: 1fr; } .mission-15-answer .button { width: 100%; } .mission-15-poem { line-height: 1.65; } }
+@media (prefers-reduced-motion: reduce) { .mission-15-flow .button { transition: none; } }
